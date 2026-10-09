@@ -11,9 +11,6 @@ app.listen(3000,async()=>{
   //   content:'This is first content'
   //  });
   const tweetRepo=new TweetRepository();
-  const tweet=await tweetRepo.create({content:'testing comment'});
-  const comment=await Comment.create({content:'comment 2'});
-  tweet.comments.push(comment);
-  await tweet.save();
-   console.log(tweet);
+  const tweet=await tweetRepo.get('6ac7a7bcce5e1242fb9504b3');
+   console.log(tweet.author);
 })
