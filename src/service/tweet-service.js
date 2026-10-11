@@ -8,7 +8,7 @@ class TweetService{
  async create(data){
     const content=data.content;
     let tags = content.match(/#[a-zA-Z0-9_]+/g) || [];//used to filer all hastags
-     tags = tags.map(tag => tag.slice(1));
+     tags = tags.map(tag => tag.slice(1)).map(tag=>tag.toLowerCase());
     const tweet=await this.tweetRepository.create(data);
     let presentTags=await this.hashtagRepository.findByname(tags);
       const presentTitles = presentTags.map(tag => tag.title);
