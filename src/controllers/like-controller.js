@@ -11,7 +11,7 @@ export const toggleLike = async (req, res) => {
       req.body.userId
     );
 
-    return res.status(200).json({
+    return res.status(201).json({
       data: response,
       success: true,
       err: {},

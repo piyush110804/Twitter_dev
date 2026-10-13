@@ -1,6 +1,6 @@
 import TweetService from "../service/tweet-service.js";
 const tweetService=new TweetService();
-const create=async(req,res)=>{
+ export const create=async(req,res)=>{
   
   try {
       const tweet= await tweetService.create(req.body);
@@ -17,4 +17,22 @@ const create=async(req,res)=>{
     })
   }
 }
-export default {create}
+
+ export const getTweet=async(req,res)=>{
+  
+  try {
+      const tweet= await tweetService.get(req.params.id);
+    return res.status(200).json({
+      data:tweet,
+      msg:'Successfully fetched a tweet',
+      err:{},
+    })
+  } catch (error) {
+      return res.status(500).json({
+      data:{},
+      msg:'Could not fetched a tweet',
+      err:error.message,
+    })
+  }
+}
+
