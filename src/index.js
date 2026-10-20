@@ -6,11 +6,13 @@ import bodyParser from 'body-parser';
 import UserRepository from './repository/user-repository.js';
 import TweetRepository from './repository/tweet-repository.js';
 import LikeService from './service/like-service.js';
-
+import { passportAuth } from './config/jwt-middleware.js';
+import passport from 'passport';
 import router from './routers/index.js';
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+passportAuth(passport);
+app.use(passport.initialize());
 app.listen(3000,async()=>{
   console.log('server started');
   await connect();
